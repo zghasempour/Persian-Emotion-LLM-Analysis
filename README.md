@@ -76,10 +76,10 @@ models you've pulled are added automatically.
 | Property  | Value                                                        |
 | --------- | ------------------------------------------------------------ |
 | File      | `testset.csv`                                                |
-| Records   | **14** balanced entries (2 per emotion)                      |
+| Records   | **36** entries (~5 per emotion; a few mixed-emotion cases)   |
 | Columns   | `id`, `text`, `true_emotion`                                 |
 | Labels    | `joy`, `sadness`, `anger`, `fear`, `disgust`, `surprise`, `nervous` |
-| Language  | Persian (Farsi), UTF-8                                       |
+| Language  | Persian (Farsi), colloquial/spoken register, UTF-8          |
 
 Example rows:
 
