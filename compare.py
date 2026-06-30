@@ -106,7 +106,11 @@ EMOTION_SYNONYMS = {
     "joy":      ["شادی", "خوشحال", "خوشحالی", "شاد", "خوشی", "joy", "happy", "happiness"],
     "sadness":  ["غم", "غمگین", "ناراحت", "ناراحتی", "اندوه", "دلتنگ", "sad", "sadness"],
     "anger":    ["خشم", "خشمگین", "عصبانی", "عصبانیت", "شاکی", "anger", "angry"],
-    "fear":     ["ترس", "ترسیده", "نگرانی", "نگران", "اضطراب", "fear", "afraid", "anxious"],
+    # "nervous" is listed BEFORE "fear" on purpose: some nervous words (e.g.
+    # "استرس") contain the substring "ترس" (fear), so nervous must be checked
+    # first to win that overlap. Order matters for normalize_emotion().
+    "nervous":  ["اضطراب", "مضطرب", "نگران", "نگرانی", "عصبی", "دلشوره", "دلهره", "بی‌قرار", "بی‌قراری", "استرس", "استرسی", "دستپاچه", "nervous", "anxious", "anxiety", "tense", "uneasy", "stressed"],
+    "fear":     ["ترس", "ترسیده", "ترسناک", "وحشت", "می‌ترسم", "fear", "afraid", "scared", "terrified"],
     "disgust":  ["انزجار", "تنفر", "چندش", "نفرت", "disgust", "disgusted"],
     "surprise": ["تعجب", "شگفتی", "شگفت", "غافلگیر", "حیرت", "surprise", "surprised"],
 }
@@ -115,7 +119,7 @@ EMOTION_SYNONYMS = {
 # with exactly ONE feeling-word and nothing else.
 SYS_CLASSIFY = (
     "تو یک دستیار تحلیل احساساتِ فارسی هستی. احساسِ غالبِ متنِ کاربر را فقط با "
-    "یک کلمه از این فهرست مشخص کن: شادی، غم، خشم، ترس، انزجار، تعجب. "
+    "یک کلمه از این فهرست مشخص کن: شادی، غم، خشم، ترس، اضطراب، انزجار، تعجب. "
     "فقط همان یک کلمه را بنویس و هیچ توضیح اضافه‌ای نده."
 )
 

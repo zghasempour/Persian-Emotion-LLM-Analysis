@@ -20,7 +20,7 @@ vs. cutting-edge cloud models.
 - `compare.py` — the whole harness. The `CONFIG` block at the top is the only
   part you normally edit (which models to test, the judge model, the prompts).
 - `testset.csv` — the dataset: columns `id, text, true_emotion`; labels are
-  `joy, sadness, anger, fear, disgust, surprise`.
+  `joy, sadness, anger, fear, disgust, surprise, nervous`.
 - `results.csv` — generated output, one row per model call (gitignored).
 
 ## How to run

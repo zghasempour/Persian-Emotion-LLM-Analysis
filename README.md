@@ -76,9 +76,9 @@ models you've pulled are added automatically.
 | Property  | Value                                                        |
 | --------- | ------------------------------------------------------------ |
 | File      | `testset.csv`                                                |
-| Records   | **12** balanced entries (2 per emotion)                      |
+| Records   | **14** balanced entries (2 per emotion)                      |
 | Columns   | `id`, `text`, `true_emotion`                                 |
-| Labels    | `joy`, `sadness`, `anger`, `fear`, `disgust`, `surprise`     |
+| Labels    | `joy`, `sadness`, `anger`, `fear`, `disgust`, `surprise`, `nervous` |
 | Language  | Persian (Farsi), UTF-8                                       |
 
 Example rows:
@@ -86,7 +86,7 @@ Example rows:
 | id | text                                                                 | true_emotion |
 | -- | -------------------------------------------------------------------- | ------------ |
 | 1  | امروز قبول شدم تو دانشگاهی که آرزوش رو داشتم، باورم نمی‌شه انقدر خوشحالم! | joy          |
-| 4  | نگرانم که نتیجه‌ی آزمایش فردا بد باشه، تمام شب خوابم نبرد.                 | fear         |
+| 4  | نگرانم که نتیجه‌ی آزمایش فردا بد باشه، تمام شب خوابم نبرد.                 | nervous      |
 
 > An evaluation set is about **quality and balance**, not size. Grow toward
 > ~60–120 entries (including harder, mixed-emotion cases) for stronger statistics.
