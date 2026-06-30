@@ -77,7 +77,10 @@ GEMINI_MODELS = [
 # Model IDs: https://console.groq.com/docs/models
 GROQ_MODELS = [
     "llama-3.3-70b-versatile",
-    "gemma2-9b-it",
+    "meta-llama/llama-4-scout-17b-16e-instruct",
+    # gpt-oss is a reasoning model: it works well on `advise`, but returns EMPTY
+    # output on `classify` (it spends the tiny 16-token budget on hidden reasoning).
+    "openai/gpt-oss-120b",
 ]
 
 # Local models served by Ollama. Pull them first, e.g.:
@@ -86,8 +89,9 @@ GROQ_MODELS = [
 #   ollama pull hf.co/mradermacher/gemma-3-4b-persian-v0-GGUF   # Persian fine-tune
 OLLAMA_MODELS = [          # local models — uncomment ones you have pulled
     "llama3.2:latest",
-    # "gemma3:4b",
-    # "qwen3:8b",
+    "gemma3:4b",
+    "qwen3:8b",
+    "hf.co/mradermacher/gemma-3-4b-persian-v0-GGUF:latest",
 ]
 
 # Model used to score the "advise" task. Pick a strong one.
@@ -300,6 +304,11 @@ def call_ollama(model, messages, *, base_url="http://localhost:11434",
         out = http_post_json(
             f"{base_url}/api/chat",
             {"model": model, "messages": messages, "stream": False,
+             # Disable "thinking" for reasoning models (qwen3, deepseek-r1, ...).
+             # Otherwise they spend the whole num_predict budget inside
+             # <think>...</think> and return EMPTY content. Ignored by non-thinking
+             # models (gemma3, llama3.2), so it is safe to send unconditionally.
+             "think": False,
              "options": {"temperature": temperature, "num_predict": max_tokens}},
             timeout=timeout,
         )
