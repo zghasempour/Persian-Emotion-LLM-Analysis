@@ -1,4 +1,4 @@
-# LLM-Analyse-Persian-Emotion
+# Persian-Emotion-LLM-Analysis
 
 **A controlled experiment to find which LLM best understands emotion in Persian
 journal text — and responds with the most empathetic, safe, useful advice.**

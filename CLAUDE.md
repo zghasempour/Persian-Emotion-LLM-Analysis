@@ -4,7 +4,7 @@ Project context for Claude Code (and other AI assistants) working in this repo.
 
 ## What this project is
 
-`LLM-Analyse-Persian-Emotion` is a **reproducible experiment** that benchmarks
+`Persian-Emotion-LLM-Analysis` is a **reproducible experiment** that benchmarks
 LLMs on Persian emotional understanding. It sends identical Persian prompts to
 many models and scores them on two tasks:
 

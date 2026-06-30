@@ -1,4 +1,4 @@
-# LLM-Analyse-Persian-Emotion has NO third-party dependencies.
+# Persian-Emotion-LLM-Analysis has NO third-party dependencies.
 # compare.py uses only the Python standard library (urllib, csv, json,
 # argparse, collections). Requires Python 3.8+.
 #
