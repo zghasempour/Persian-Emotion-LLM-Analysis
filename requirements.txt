@@ -1,0 +1,10 @@
+# LLM-Analyse-Persian-Emotion has NO third-party dependencies.
+# compare.py uses only the Python standard library (urllib, csv, json,
+# argparse, collections). Requires Python 3.8+.
+#
+# Local models are served by Ollama (a separate app), not a pip package:
+#   https://ollama.com
+#
+# Optional — only if you build add-on analysis/plots from results.csv:
+# pandas
+# matplotlib
