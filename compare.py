@@ -191,7 +191,15 @@ def call_openrouter(model, messages, *, api_key, temperature=0.0, max_tokens=400
             timeout=timeout,
         )
         # Dig the reply text out of the nested response; return (answer, no-error).
-        return out["choices"][0]["message"]["content"].strip(), None
+        # "Reasoning" models (gpt-5, gemini-2.5-pro, o-series...) can spend the whole
+        # max_tokens budget on hidden reasoning and come back with content=None (or ""),
+        # so report that clearly instead of crashing on None.strip().
+        msg = out["choices"][0]["message"]
+        content = msg.get("content")
+        if not content:
+            fr = out["choices"][0].get("finish_reason")
+            return None, f"empty content (finish_reason={fr}); raise max_tokens for reasoning models"
+        return content.strip(), None
     except urllib.error.HTTPError as e:        # the server replied with an error code
         body = e.read().decode("utf-8", "ignore")[:200]
         return None, f"HTTP {e.code}: {body}"
@@ -596,7 +604,12 @@ def main():
                 # Phrase the question, and pick settings that suit the task:
                 msgs = classify_messages(ex["text"]) if task == "classify" else advise_messages(ex["text"])
                 temperature = 0.0 if task == "classify" else 0.7   # 0 = focused, 0.7 = more natural
-                max_tokens = 16 if task == "classify" else 320     # answer length budget
+                # "Reasoning" models burn output tokens on hidden thinking before they
+                # answer, so a tiny 16-token classify budget leaves them with EMPTY
+                # content. Give room to think AND answer; normalize_emotion() still pulls
+                # out the single label, so the larger budget doesn't change grading for
+                # non-reasoning models (they stop right after the word).
+                max_tokens = 768 if task == "classify" else 320    # answer length budget
 
                 t0 = time.time()                                   # start the stopwatch
                 content, err = generate(spec, msgs, ctx, temperature=temperature, max_tokens=max_tokens)

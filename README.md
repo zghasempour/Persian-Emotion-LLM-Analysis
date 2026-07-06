@@ -61,8 +61,8 @@ models you've pulled are added automatically.
 `anthropic/claude-sonnet-4`, `qwen/qwen3-235b-a22b`,
 `meta-llama/llama-3.3-70b-instruct` (via OpenRouter); `claude-sonnet-4-5`,
 `claude-3-5-haiku-latest` (Anthropic direct); `gemini-2.5-flash`,
-`gemini-2.5-pro` (Google direct); `llama-3.3-70b-versatile`, `gemma2-9b-it`
-(Groq).
+`gemini-2.5-pro` (Google direct); `llama-3.3-70b-versatile`,
+`llama-4-scout-17b-16e-instruct`, `openai/gpt-oss-120b` (Groq).
 
 **Local / open (Ollama — private, offline, free):** `llama3.2`, and optionally
 `gemma3:4b`, `qwen3:8b`, and a Persian fine-tune (`gemma-3-4b-persian`).
@@ -109,6 +109,29 @@ The judge is a strong model chosen by available key (default
 `google/gemini-2.5-pro`; override with `--judge-model`). **Validity note:** the
 judge ideally is *not* one of the contestants, and a sample of its scores should
 be human spot-checked.
+
+---
+
+## Results (Classify Task — 36-item testset)
+
+Emotion classification accuracy across 12 models:
+
+| Rank | Model | Provider | Accuracy |
+| ---- | ----- | -------- | -------- |
+| 1 | gpt-5 | OpenRouter | 100% |
+| 2 | qwen3-235b-a22b | OpenRouter | 97% |
+| 2 | gemini-2.5-pro | OpenRouter | 97% |
+| 4 | claude-sonnet-4 | OpenRouter | 94% |
+| 5 | gpt-oss-120b | Groq | 92% |
+| 6 | llama-4-scout | Groq | 89% |
+| 7 | llama-3.3-70b | OpenRouter / Groq | 86% |
+| 8 | gemma-3-4b-persian | Local (Ollama) | 75% |
+| 9 | gemma3:4b | Local (Ollama) | 72% |
+| 10 | qwen3:8b | Local (Ollama) | 64% |
+| 11 | llama3.2 | Local (Ollama) | 36% |
+
+**Local vs. cloud gap:** the best local model (75%) trails the frontier by 25 points.
+The `advise` task leaderboard (LLM-as-judge scores) will follow.
 
 ---
 
